@@ -1,0 +1,17 @@
+### GET
+GET http://localhost:8000/api/pharmaciens/
+Accept: application/json
+###
+POST http://localhost:8080/api/pharmaciens/
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name" : "hoss",
+    "lastname" : "koubaa",
+    "email" : "qweqwe@gmail.com",
+    "speciality" : "nutritionist",
+    "password" : "0000"
+}
+
+###
