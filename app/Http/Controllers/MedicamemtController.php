@@ -14,11 +14,10 @@ class MedicamemtController extends Controller
      */
     public function index()
     {
-        try{
+        try {
             $medicaments = Medicament::all();
             return response()->json($medicaments, 200);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
     }
@@ -28,35 +27,33 @@ class MedicamemtController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $medicament = new Medicament([
                 "name" => $request->input('name'),
                 "reference" => $request->input('reference'),
                 "detail" => $request->input('detail'),
             ]);
 
-            if($request->input('ordonnanceID') != null){
+            if ($request->input('ordonnanceID') != null) {
                 $ordonnance = Ordonnance::findOrFail($request->input('ordonnanceID'));
                 $ordonnance->medicaments()->attach($medicament);
             }
             $medicament->save();
             return response()->json($medicament, 200);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
     }
 
-    /**
+    /**asdad
      * Display the specified resource.
      */
     public function show($name)
     {
-        try{
+        try {
             $medicament = Medicament::where('name', $name)->first();
             return response()->json($medicament, 200);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
     }
@@ -71,7 +68,7 @@ class MedicamemtController extends Controller
             $medicament->update($request->all());
             //todo update the intermediate table
             return response()->json($medicament, 200);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
     }
@@ -81,12 +78,11 @@ class MedicamemtController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        try {
             $medicament = Medicament::findOrFail($id);
             $medicament->delete();
             return response()->json("Medicament supprimée avec succés", 204);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
     }
